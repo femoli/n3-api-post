@@ -16,5 +16,5 @@ let agenda = {
 }
 
 module.exports = {
-  model: agenda
+ agenda
 }
