@@ -6,8 +6,17 @@ const getAll = (request, response) => {
 };
 
 const add = (request, response) => {
-  model.agenda.contatos.push(request.body)
-  response.status(200).send()
+  let contato = request.body
+  let baseDados = model.agenda.contatos
+  contato.id = Math.random().toString(36).substr(-8)
+
+  if (baseDados.find(dado => dado.nome === contato.nome))
+  response.status(400).send("Usuário já existe")
+  
+  else {
+  model.agenda.contatos.push(contato)
+  response.status(201).send(contato)
+}
 }
 
 module.exports = {
@@ -15,3 +24,4 @@ module.exports = {
   add
 }
 
+//retornar user com signo - 
